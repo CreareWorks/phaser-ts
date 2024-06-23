@@ -6,7 +6,7 @@ class ScrollScene extends Phaser.Scene {
   private _player?: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   private _stars?: Phaser.Physics.Arcade.Group;
   private _bombs?: Phaser.Physics.Arcade.Group;
-  private _score = 0;
+  private _score: number = 0;
   private _scoreText?: Phaser.GameObjects.Text;
 
   constructor() {
@@ -14,7 +14,7 @@ class ScrollScene extends Phaser.Scene {
   }
 
   // ゲーム素材を読み込む(最初に読み込んでおく必要がある)
-  preload() {
+  preload() : void {
     // 素材リソースのベースとなるURLを指定
     this.load.setBaseURL("https://labs.phaser.io");
 
@@ -37,7 +37,7 @@ class ScrollScene extends Phaser.Scene {
   }
 
   // ゲーム画面の初期化
-  create() {
+  create() : void {
     // 背景画像の追加
     // 画像の表示位置は、x: 400, y: 300
     // preloadで読み込んだsky画像を指定
@@ -116,7 +116,7 @@ class ScrollScene extends Phaser.Scene {
   }
 
   // update ゲーム画面の更新 操作など(画面を表示するだけなので今回は使わない)
-  update() {
+  update() : void {
     // プレイヤーやカーソルキーが初期化されていない場合は、何もせずにリターン
     if (!this._player || !this._cursorKeys) {
       return;
@@ -156,7 +156,7 @@ class ScrollScene extends Phaser.Scene {
   private collectStar (
     player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody, 
     star: Phaser.GameObjects.GameObject
-  ){
+  ) : void {
       star.disableBody(true, true);
 
       this._score += 10;
@@ -188,8 +188,7 @@ class ScrollScene extends Phaser.Scene {
   private hitBomb (
     player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody, 
     bomb: Phaser.Physics.Arcade.Group
-  )
-  {
+  ) : void {
       this.physics.pause();
 
       player.setTint(0xff0000);
