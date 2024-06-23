@@ -96,7 +96,7 @@ class ScrollScene extends Phaser.Scene {
       setXY: { x: 12, y: 0, stepX: 70 }
     });
     // 
-    this._stars.children.iterate((child) => {
+    this._stars.children.iterate((child: Phaser.GameObjects.GameObject) => {
       // 作成された12個の各星オブジェクトに0.4~0.8のバウンド値を設定
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
@@ -126,19 +126,16 @@ class ScrollScene extends Phaser.Scene {
     if (this._cursorKeys.left.isDown)
     {
         this._player.setVelocityX(-160);
-    
         this._player.anims.play('left', true);
     }
     else if (this._cursorKeys.right.isDown)
     {
         this._player.setVelocityX(160);
-    
         this._player.anims.play('right', true);
     }
     else
     {
         this._player.setVelocityX(0);
-    
         this._player.anims.play('turn');
     }
     
@@ -164,10 +161,8 @@ class ScrollScene extends Phaser.Scene {
 
       if (this._stars.countActive(true) === 0)
       {
-          this._stars.children.iterate(function (child) {
-    
+          this._stars.children.iterate(function (child: Phaser.GameObjects.GameObject) {
               child.enableBody(true, child.x, 0, true, true);
-    
           });
     
           let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
