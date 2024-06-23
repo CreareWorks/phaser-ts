@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import MyScene from "./scenes/practiceScene";
+import practiceScene from "./scenes/practiceScene";
 
 // ゲームの基本設定
 const config: Phaser.Types.Core.GameConfig = {
@@ -15,6 +15,6 @@ const config: Phaser.Types.Core.GameConfig = {
       },
     },
   },
-  scene: MyScene,
+  scene: practiceScene,
 };
 new Phaser.Game(config);
